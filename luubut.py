@@ -95,7 +95,7 @@ if st.session_state.step == 2:
 if st.session_state.step == 3:
     
     if 'info' in st.session_state:
-        st.info(f": {st.session_state.info.get('loi_chuc', 'Chúc bạn thành công!')}")
+        st.info(f" {st.session_state.info.get('loi_chuc', 'Chúc bạn thành công!')}")
     
     st.divider() # Dòng kẻ ngang cho đẹp
     
