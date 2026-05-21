@@ -4,8 +4,8 @@ from email.message import EmailMessage
 
 def gui_email(ten_nguoi_gui, phan_hoi):
     try:
-        email_user = st.secrets["pmthuy23.3.8@gmail.com"]
-        email_password = st.secrets["nqyc_wpny_knvp_waer"]
+        email_user = st.secrets["EMAIL_USER"]
+        email_password = st.secrets["EMAIL_PASSWORD"]
         
         msg = EmailMessage()
         msg['Subject'] = f"Lưu bút từ {ten_nguoi_gui}"
