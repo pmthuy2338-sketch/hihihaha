@@ -68,8 +68,9 @@ if st.button("Bấm vô đây để tìm mã codeeeee"):
     else:
         st.warning("Chờ một xíu nhaa")
         st.session_state.info = {"ma": "0852DQ", "loi_chuc": "Ae mình gặp được nhau là siêu có duyên đó, nhớ nha, chúc thi đh tốt đạt nv 1 nhooo kkkk"}
-        st.session_state.step = 2
-
+    st.session_state.step = 2
+    st.write("Đây nè (copy lại để unlock nhé):")
+    st.code(st.session_state.info['ma'])
 # --- NHẬP MÃ ---
 if st.session_state.step == 2:
     ma_nhap = st.text_input("Nhập mã code vào đây mới ra:", type="password")
