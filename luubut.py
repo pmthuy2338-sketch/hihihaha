@@ -45,6 +45,9 @@ data_hoc_sinh = {
      ("Nguyễn Trúc An", "18/05/2008"): {"ma": "TA08Q2", "loi_chuc": "Siêu lâu rồi ko gặp An, mình cũng ít nch nữa, chúc An thi đỗ NEU nhasaaaa kkkkk"},
      ("Nguyễn Phan Hà Anh", "30/04/2008"): {"ma": "HA08Q2", "loi_chuc": "Lâu rồi không gặp cậu, chúc Hà Anh thi đỗ trường đh ngành mình muốn nhá hahahahaahahaha"},
      ("Lê Hạnh Linh", "07/01/2008"): {"ma": "HL08Q2", "loi_chuc": "Như kiểu 100 năm rồi ko gặp ý=))) may mà có Hlinh lấy sổ đoàn cho tớ tớ mưới đc đi thi đh hehe, chúc HLinh thi gì trúng nấy kkk"},
+     ("Đặng Trung Nghĩa", "02/12/2008"): {"ma": "DN08Q2", "loi_chuc": "T với m chơi lâu phết đók, kiểu ae mình ko bị mất liên lạc ý ahihi=))) t cảm ơn m đã nghe mấy chuyện linh tinh của t nha, m là người t thích tâm sự nhất tại m nói gì nghe cũng lọt tai t á=)) mong là t với m có thể chơi lâu. Uowsc gì m đỗ NEU để ae mình được đi chơi nhiều nhiều, vui vẻ, nhất định phải cố 100% đó nha"),
+     ("Trần Đức Huy", "30/08/2008"): {"ma": "DH08Q2", "loi_chuc": " Web này là t code đó, kinh chưa, t ngồi từ 12h trưa đến bh là 11h30 tối=))), cảm ơn m vì t hỏi gì m cũng rep nhaa, quý lắm ý mặc dù m k rep t, lúc m mời t đi kỉ yếu t bất ngờ vl. T thấy học hành của m có gì để chê nữa rồi nên  chúc m cái gì cũng thành công ha."),
+     ("Hong Eun Woo", "22/12/2005"): {"ma": "EW05Q2", "loi_chuc": " Hihihi, me cảm ơn vì lúc nào cũng nhiệt tình giúp me nha kkk, chúc u thi đại học điểm siêu siêu cao, đạt học bổng BUV 100% nha kkk")
  }
  
 st.title("Khôm phải là lưu bút")
