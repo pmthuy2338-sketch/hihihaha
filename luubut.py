@@ -1,26 +1,25 @@
 import streamlit as st
 import smtplib
 from email.message import EmailMessage
- 
-# --- CẤU HÌNH EMAIL CỦA BẠN ---
-# Lưu ý: Dùng App Password của Gmail
-EMAIL_GOC = "pmthuy23.3.08@gmail.com"
-EMAIL_PASSWORD = "nqyc_wpny_knvp_waer"
- 
-def gui_email(nguoi_gui, noi_dung):
-    msg = EmailMessage()
-    msg.set_content(f"Người gửi: {nguoi_gui}\n\nViết ở đây: {noi_dung}")
-    msg['Subject'] = f"From {nguoi_gui}"
-    msg['From'] = EMAIL_GOC
-    msg['To'] = EMAIL_GOC
-     
+
+def gui_email(ten_nguoi_gui, phan_hoi):
     try:
-     with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
-          smtp.login(EMAIL_GOC, EMAIL_PASSWORD)
-          smtp.send_message(msg)
-     return True
-    except:
-     return False
+        email_user = st.secrets["pmthuy23.3.8@gmail.com"]
+        email_password = st.secrets["nqyc_wpny_knvp_waer"]
+        
+        msg = EmailMessage()
+        msg['Subject'] = f"Lưu bút từ {ten_nguoi_gui}"
+        msg['From'] = email_user
+        msg['To'] = email_user 
+        msg.set_content(f"Người gửi: {ten_nguoi_gui}\n\nNội dung: {phan_hoi}")
+        
+        with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
+            smtp.login(email_user, email_password)
+            smtp.send_message(msg)
+        return True
+    except Exception as e:
+        st.error(f"Lỗi chi tiết: {e}") 
+        return False
  
 # --- DỮ LIỆU LỚP ---
 data_hoc_sinh = {
@@ -50,6 +49,7 @@ data_hoc_sinh = {
  
 st.title("Khôm phải là lưu bút")
 st.write("Nhập thông tin mới hiện")
+
 # --- FORM NHẬP LIỆU ---
 ten = st.text_input("Đầy đủ họ tên nhs")
 ngay_sinh = st.text_input("Đầy đủ ngày tháng năm sinh nè(ngày/tháng/năm sinh):")
@@ -58,42 +58,57 @@ if 'step' not in st.session_state:
     st.session_state.step = 1
 
 if st.button("Bấm vô đây để tìm mã codeeeee"):
+    # LƯU TÊN NGAY TẠI ĐÂY - Dù tìm thấy hay không thì vẫn lưu tên này lại
+    if ten:
+        st.session_state.ten_nguoi_gui = ten
+    else:
+        st.session_state.ten_nguoi_gui = "Người ẩn danh"
+
     key = (ten.strip(), ngay_sinh.strip())
     if key in data_hoc_sinh:
         st.session_state.info = data_hoc_sinh[key]
         st.success("Dìa dia thấy rồi hehehe")
-        st.session_state.step = 2
-        st.write("Đây nè (copy lại để unlock nhé):")
-        st.code(st.session_state.info['ma'])
     else:
         st.warning("Chờ một xíu nhaa")
         st.session_state.info = {"ma": "0852DQ", "loi_chuc": "Ae mình gặp được nhau là siêu có duyên đó, nhớ nha, chúc thi đh tốt đạt nv 1 nhooo kkkk"}
+    
     st.session_state.step = 2
-    st.write("Đây nè (copy lại để unlock nhé):")
+
+# --- HIỆN MÃ CODE ---
+if st.session_state.step >= 2:
+    st.write("Mã code của bạn là (copy lại để unlock nhé):")
     st.code(st.session_state.info['ma'])
+
 # --- NHẬP MÃ ---
 if st.session_state.step == 2:
     ma_nhap = st.text_input("Nhập mã code vào đây mới ra:", type="password")
     if st.button("Unlockkk..."):
         if ma_nhap == st.session_state.info["ma"]:
             st.balloons()
-            st.info(f" {st.session_state.info['loi_chuc']}")
+            st.info(f"{st.session_state.info['loi_chuc']}")
             st.session_state.step = 3
+            st.rerun() 
         else:
             st.error("Nhập sai mã rồi, kém thế!!!")
 
-# --- VIẾT LƯU BÚT GỬI LẠI ---
+# --- VIẾT PHẢN HỒI ---
 if st.session_state.step == 3:
+    
+    if 'info' in st.session_state:
+        st.info(f": {st.session_state.info.get('loi_chuc', 'Chúc bạn thành công!')}")
+    
+    st.divider() # Dòng kẻ ngang cho đẹp
+    
     phan_hoi = st.text_area("Viết hoặc không viết cũm đc, đừng viết cái gì sến sến nhá=))):")
     if st.button("Gửi vài dòng cho Thủy đii=)))))"):
         if phan_hoi:
-            if gui_email(st.session_state.ten_nguoi_gui, phan_hoi):
+            # Dùng tên đã lưu trong session_state
+            ten_gui = st.session_state.get('ten_nguoi_gui', 'Người lạ')
+            if gui_email(ten_gui, phan_hoi):
                 st.success("Đã gửi thành công, then kiu then kiu")
             else:
-                st.error("Có lỗi xảy ra khi gửi mail, nhắn cho t để t chỉnh sửa nhe")
+                st.error("Có lỗi xảy ra khi gửi mail")
         else:
             st.warning("Phải viết mới gửi đc=))) để trống ko gửi đc đâu")
-      
-
     
     
