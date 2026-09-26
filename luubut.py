@@ -81,15 +81,20 @@ if st.session_state.step >= 2:
     st.code(st.session_state.info['ma'])
 
 if st.session_state.step == 2:
-    ma_nhap = st.text_input("Nhập mã code vào đây mới ra:", type="password")
-    if st.button("Unlockkk..."):
-        if ma_nhap == st.session_state.info["ma"].strip():
-            st.balloons()
-            st.info(f"{st.session_state.info['loi_chuc']}")
-            st.session_state.step = 3
-            st.rerun() 
-        else:
-            st.error("Nhập sai mã rồi, kém thế!!!")
+    with st.form("unlock_form"):
+        ma_nhap = st.text_input("Nhập mã code vào đây mới ra:", type="password")
+        submit_button = st.form_submit_button("Unlockkk...")
+        
+        if submit_button:
+            # Kiểm tra xem key "info" đã tồn tại trong session_state chưa để tránh lỗi KeyError
+            if "info" in st.session_state and ma_nhap == st.session_state.info.get("ma", "").strip():
+                st.success("Mã chính xác!")
+                st.balloons()
+                st.info(f"{st.session_state.info['loi_chuc']}")
+                st.session_state.step = 3
+                st.rerun()
+            else:
+                st.error("Nhập sai mã rồi, kém thế!!!")
 
 if st.session_state.step == 3:
     
