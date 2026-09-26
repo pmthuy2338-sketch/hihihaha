@@ -21,7 +21,6 @@ def gui_email(ten_nguoi_gui, phan_hoi):
         st.error(f"Lỗi chi tiết: {e}") 
         return False
  
-# --- DỮ LIỆU LỚP ---
 data_hoc_sinh = {
      ("Trần Lê Bảo Ngọc", "02/07/2008"): {"ma": "BN08D5", "loi_chuc": "T ít nch với m quá nên t cũng chả bíc nói gì, nma tại m xinh nên t sẽ viết cgi đấy, chúc m đỗ đh nháa"},
      ("Nguyễn Hải Nhi", "13/09/2008"): {"ma": "HN08D5", "loi_chuc": "Hê lô hê lô, quà m tặng t còn chưa lắp xong nữa, thui thì để thi đh xong ik kkk, chúc cô giáo Hải Nhi thi tốt nhá, m là bạn cùng bàn mà t quý nhất trong tất cả bạn cùng bàn đấy hihihihi"},
@@ -54,7 +53,6 @@ data_hoc_sinh = {
 st.title("Khôm phải là lưu bút")
 st.write("Nhập thông tin mới hiện")
 
-# --- FORM NHẬP LIỆU ---
 ten = st.text_input("Đầy đủ họ tên nhs")
 ngay_sinh = st.text_input("Đầy đủ ngày tháng năm sinh nè(ngày/tháng/năm sinh):")
 
@@ -62,7 +60,6 @@ if 'step' not in st.session_state:
     st.session_state.step = 1
 
 if st.button("Bấm vô đây để tìm mã codeeeee"):
-    # LƯU TÊN NGAY TẠI ĐÂY - Dù tìm thấy hay không thì vẫn lưu tên này lại
     if ten:
         st.session_state.ten_nguoi_gui = ten
     else:
@@ -83,11 +80,10 @@ if st.session_state.step >= 2:
     st.write("Mã code của bạn là (copy lại để unlock nhé):")
     st.code(st.session_state.info['ma'])
 
-# --- NHẬP MÃ ---
 if st.session_state.step == 2:
     ma_nhap = st.text_input("Nhập mã code vào đây mới ra:", type="password")
     if st.button("Unlockkk..."):
-        if ma_nhap == st.session_state.info["ma"]:
+        if ma_nhap == st.session_state.info["ma"].strip():
             st.balloons()
             st.info(f"{st.session_state.info['loi_chuc']}")
             st.session_state.step = 3
@@ -95,18 +91,16 @@ if st.session_state.step == 2:
         else:
             st.error("Nhập sai mã rồi, kém thế!!!")
 
-# --- VIẾT PHẢN HỒI ---
 if st.session_state.step == 3:
     
     if 'info' in st.session_state:
         st.info(f" {st.session_state.info.get('loi_chuc', 'Chúc bạn thành công!')}")
     
-    st.divider() # Dòng kẻ ngang cho đẹp
+    st.divider() 
     
     phan_hoi = st.text_area("Viết hoặc không viết cũm đc, đừng viết cái gì sến sến nhá=))):")
     if st.button("Gửi vài dòng cho Thủy đii=)))))"):
         if phan_hoi:
-            # Dùng tên đã lưu trong session_state
             ten_gui = st.session_state.get('ten_nguoi_gui', 'Người lạ')
             if gui_email(ten_gui, phan_hoi):
                 st.success("Đã gửi thành công, then kiu then kiu")
