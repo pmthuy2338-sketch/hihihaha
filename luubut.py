@@ -347,7 +347,7 @@ if st.session_state.step >= 2:
 
 if st.session_state.step == 2:
     ma_nhap = st.text_input(
-        "Hmmmm ur code is....( copy the code to unlock plss :) )",
+        "Enter the code below⬎ ",
         type="password",
         key="input_ma_nhap",
     )
