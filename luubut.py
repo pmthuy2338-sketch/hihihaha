@@ -1,44 +1,38 @@
 from email.message import EmailMessage
-import random  # Đã đưa import random lên đầu hoặc đặt gọn gàng ở đây
+import random
 import smtplib
 import streamlit as st
 
 
 def gui_email(ten_nguoi_gui, phan_hoi):
-  try:
-    email_user = st.secrets["EMAIL_USER"]
-    email_password = st.secrets["EMAIL_PASSWORD"]
+    try:
+        email_user = st.secrets["EMAIL_USER"]
+        email_password = st.secrets["EMAIL_PASSWORD"]
 
-    msg = EmailMessage()
-    msg["Subject"] = f"Lưu bút từ {ten_nguoi_gui}"
-    msg["From"] = email_user
-    msg["To"] = email_user
-    msg.set_content(f"Người gửi: {ten_nguoi_gui}\n\nNội dung: {phan_hoi}")
+        msg = EmailMessage()
+        msg["Subject"] = f"Lưu bút từ {ten_nguoi_gui}"
+        msg["From"] = email_user
+        msg["To"] = email_user
+        msg.set_content(f"Người gửi: {ten_nguoi_gui}\n\nNội dung: {phan_hoi}")
 
-    with smtplib.SMTP_SSL("smtp.gmail.com", 465) as smtp:
-      smtp.login(email_user, email_password)
-      smtp.send_message(msg)
-    return True
-  except Exception as e:
-    st.error(f"Lỗi chi tiết: {e}")
-    return False
+        with smtplib.SMTP_SSL("smtp.gmail.com", 465) as smtp:
+            smtp.login(email_user, email_password)
+            smtp.send_message(msg)
+        return True
+    except Exception as e:
+        st.error(f"Lỗi chi tiết: {e}")
+        return False
 
 
 data_hoc_sinh = {
-    (
-        "Trần Lê Bảo Ngọc",
-        "02/07/2008",
-    ): {
+    ("Trần Lê Bảo Ngọc", "02/07/2008"): {
         "ma": "BN08D5",
         "loi_chuc": (
             "T ít nch với m quá nên t cũng chả bíc nói gì, nma tại m xinh nên t"
             " sẽ viết cgi đấy, chúc m đỗ đh nháa"
         ),
     },
-    (
-        "Nguyễn Hải Nhi",
-        "13/09/2008",
-    ): {
+    ("Nguyễn Hải Nhi", "13/09/2008"): {
         "ma": "HN08D5",
         "loi_chuc": (
             "Hê lô hê lô, quà m tặng t còn chưa lắp xong nữa, thui thì để thi"
@@ -46,10 +40,7 @@ data_hoc_sinh = {
             " bàn mà t quý nhất trong tất cả bạn cùng bàn đấy hihihihi"
         ),
     },
-    (
-        "Nguyễn Yến Nhi",
-        "08/06/2008",
-    ): {
+    ("Nguyễn Yến Nhi", "08/06/2008"): {
         "ma": "YN08D5",
         "loi_chuc": (
             "=)))))) tại m giống Mona Lisa(có thêm lông mày) nên t siêu ấn"
@@ -58,10 +49,7 @@ data_hoc_sinh = {
         ),
     },
     ("Cùng Việt Phương", "20/10/2008"): {"ma": "VP08D5", "loi_chuc": ""},
-    (
-        "Nguyễn Thị Phương Thảo",
-        "23/06/2008",
-    ): {
+    ("Nguyễn Thị Phương Thảo", "23/06/2008"): {
         "ma": "PT08D5",
         "loi_chuc": (
             "Đồng ăn mảnh của t, t rất sốc khi nghe m chọn đc ngành và bây giờ"
@@ -73,10 +61,7 @@ data_hoc_sinh = {
             " thao gay thao gay thao gay"
         ),
     },
-    (
-        "Trần Bảo Thy",
-        "19/08/2008",
-    ): {
+    ("Trần Bảo Thy", "19/08/2008"): {
         "ma": "BT08D5",
         "loi_chuc": (
             " hihi t bị ấn tượng cái lúc t với m đi bán đồ ở kỉ niệm 30 năm"
@@ -84,10 +69,7 @@ data_hoc_sinh = {
             " nha hahahaahahahah"
         ),
     },
-    (
-        "Nguyễn Hiền Trang",
-        "17/10/2008",
-    ): {
+    ("Nguyễn Hiền Trang", "17/10/2008"): {
         "ma": "HT08D5",
         "loi_chuc": (
             " kcj để nói, quá chán, lên đh ngủ ít thôi b nhá, lo mà học đi, 3"
@@ -98,10 +80,7 @@ data_hoc_sinh = {
             " gọi m đấy ko phải mtrg đâu htrg gay htrg gay htrg gay"
         ),
     },
-    (
-        "Đoàn Minh Trang",
-        "01/09/2008",
-    ): {
+    ("Đoàn Minh Trang", "01/09/2008"): {
         "ma": "MT08D5",
         "loi_chuc": (
             "Dnay t với bím nch nhiều qtqđ, sắp thi đh xong nghỉ chơi rồi, bím"
@@ -113,10 +92,7 @@ data_hoc_sinh = {
             " mà bây giờ cứ ngáo ngáo"
         ),
     },
-    (
-        "Nguyễn Lê Bảo Trâm",
-        "09/10/2008",
-    ): {
+    ("Nguyễn Lê Bảo Trâm", "09/10/2008"): {
         "ma": "BT08D5",
         "loi_chuc": (
             "Đề nghị m chở t đi học đến khi t sang Hàn luôn để sau đỡ nhớ t"
@@ -128,20 +104,14 @@ data_hoc_sinh = {
             " tram ay tram gay tram gay tram gay"
         ),
     },
-    (
-        "Lê Bảo Trân",
-        "28/10/2008",
-    ): {
+    ("Lê Bảo Trân", "28/10/2008"): {
         "ma": "BT08D5",
         "loi_chuc": (
             "Hihihihi, sắp hết năm rồi đỡ phải làm lớp trưởng, mệt phết nhỉ,"
             " chúc lớp trưởng thi đh tốt ước gì đc nấy nhe, "
         ),
     },
-    (
-        "Phạm Đặng Tuệ Trân",
-        "14/02/2008",
-    ): {
+    ("Phạm Đặng Tuệ Trân", "14/02/2008"): {
         "ma": "TTD5",
         "loi_chuc": (
             "T vẫn thích Tuệ Trân đi du học với t đó, hihihi,  chúc Tuệ Trân"
@@ -149,10 +119,7 @@ data_hoc_sinh = {
             " nhá"
         ),
     },
-    (
-        "Vũ Thanh Trúc",
-        "19/04/2008",
-    ): {
+    ("Vũ Thanh Trúc", "19/04/2008"): {
         "ma": "TT08D5",
         "loi_chuc": (
             "Chúc Trúc thích gì là đỗ hết sạch luôn, lúc đầu chưa nch t còn sợ"
@@ -160,10 +127,7 @@ data_hoc_sinh = {
             " 99,99% ý"
         ),
     },
-    (
-        "Trương Nguyễn Hà Vy",
-        "20/02/2008",
-    ): {
+    ("Trương Nguyễn Hà Vy", "20/02/2008"): {
         "ma": "HV08D5",
         "loi_chuc": (
             "Top 1 điều sốc nhất là t với m nói chuyện với nhau đấy=)))) giờ"
@@ -171,30 +135,21 @@ data_hoc_sinh = {
             " là đỗ hết sạch=)))"
         ),
     },
-    (
-        "Hoàng Lan Anh",
-        "21/07/2008",
-    ): {
+    ("Hoàng Lan Anh", "21/07/2008"): {
         "ma": "LA08D5",
         "loi_chuc": (
             "May mà Lan Anh học địa với t đấy hahahah, chúc cô giáo Lan Anh"
             " đỗ trường mình muốn nhá"
         ),
     },
-    (
-        "Nguyễn Thị Trâm Anh",
-        "10/02/2008",
-    ): {
+    ("Nguyễn Thị Trâm Anh", "10/02/2008"): {
         "ma": "TA08D5",
         "loi_chuc": (
             "Chúc Trâm Anh siêu cấp đáng iu trúng tuyển ngành mình muốn nè, thi"
             " nhanh lên t với m còn đi ăn nữa=)))))))))))"
         ),
     },
-    (
-        "Mai Thiên Bảo Anh",
-        "18/02/2008",
-    ): {
+    ("Mai Thiên Bảo Anh", "18/02/2008"): {
         "ma": "BA08D5",
         "loi_chuc": (
             "T thấy m chăm vl, ước gì t cũng đc 1 phần như m là ngon rồi, t"
@@ -202,10 +157,7 @@ data_hoc_sinh = {
             " nhất của m=))"
         ),
     },
-    (
-        "Dương Bảo Quốc",
-        "28/12/2008",
-    ): {
+    ("Dương Bảo Quốc", "28/12/2008"): {
         "ma": "BQ08Q2",
         "loi_chuc": (
             "Hihihihihi, ko ngờ là t đc nch lại với  m đấy, trc t thấy có lỗi"
@@ -215,10 +167,7 @@ data_hoc_sinh = {
             " để ae mình còn đi chơi kkk"
         ),
     },
-    (
-        "Nguyễn Trung Nghĩa",
-        "30/09/2008",
-    ): {
+    ("Nguyễn Trung Nghĩa", "30/09/2008"): {
         "ma": "TN08Q2",
         "loi_chuc": (
             "Ae mình chơi lâu qtqđ, chắc t chơi với  m với pl với quốc lâu mà"
@@ -228,10 +177,7 @@ data_hoc_sinh = {
             " nhớ chưa nhớ chưa"
         ),
     },
-    (
-        "Trần Ngọc Phương Linh",
-        "02/02/2008",
-    ): {
+    ("Trần Ngọc Phương Linh", "02/02/2008"): {
         "ma": "PL08Q2",
         "loi_chuc": (
             "hihihihi, tớ muốn tớ với cậu chơi siêu siêu lâu, chả biết PLinh"
@@ -241,10 +187,7 @@ data_hoc_sinh = {
         ),
     },
     ("Đậu Ngọc Linh", "17/03/2008"): {"ma": "NL08D5", "loi_chuc": ""},
-    (
-        "Nguyễn Trần Phương Anh",
-        "21/11/2008",
-    ): {
+    ("Nguyễn Trần Phương Anh", "21/11/2008"): {
         "ma": "PA08Q2",
         "loi_chuc": (
             "Lâu rồi không gặp cậu, Phanh học giỏi thế tớ nghĩ là 99,99% đỗ"
@@ -252,40 +195,28 @@ data_hoc_sinh = {
             " nho hihi"
         ),
     },
-    (
-        "Nguyễn Trúc An",
-        "18/05/2008",
-    ): {
+    ("Nguyễn Trúc An", "18/05/2008"): {
         "ma": "TA08Q2",
         "loi_chuc": (
             "Siêu lâu rồi ko gặp An, mình cũng ít nch nữa, chúc An thi đỗ NEU"
             " nhasaaaa kkkkk"
         ),
     },
-    (
-        "Nguyễn Phan Hà Anh",
-        "30/04/2008",
-    ): {
+    ("Nguyễn Phan Hà Anh", "30/04/2008"): {
         "ma": "HA08Q2",
         "loi_chuc": (
             "Lâu rồi không gặp cậu, chúc Hà Anh thi đỗ trường đh ngành mình"
             " muốn nhá hahahahaahahaha"
         ),
     },
-    (
-        "Lê Hạnh Linh",
-        "07/01/2008",
-    ): {
+    ("Lê Hạnh Linh", "07/01/2008"): {
         "ma": "HL08Q2",
         "loi_chuc": (
             "Như kiểu 100 năm rồi ko gặp ý=))) may mà có Hlinh lấy sổ đoàn cho"
             " tớ tớ mưới đc đi thi đh hehe, chúc HLinh thi gì trúng nấy kkk"
         ),
     },
-    (
-        "Đặng Trung Nghĩa",
-        "02/12/2008",
-    ): {
+    ("Đặng Trung Nghĩa", "02/12/2008"): {
         "ma": "DN08Q2",
         "loi_chuc": (
             "T với m chơi lâu phết đók, kiểu ae mình ko bị mất liên lạc ý"
@@ -296,10 +227,7 @@ data_hoc_sinh = {
             " đó nha"
         ),
     },
-    (
-        "Trần Đức Huy",
-        "30/08/2008",
-    ): {
+    ("Trần Đức Huy", "30/08/2008"): {
         "ma": "DH08Q2",
         "loi_chuc": (
             " Web này là t code đó, kinh chưa, t ngồi từ 12h trưa đến bh là"
@@ -309,10 +237,7 @@ data_hoc_sinh = {
             " thành công ha."
         ),
     },
-    (
-        "Hong Eun Woo",
-        "22/12/2005",
-    ): {
+    ("Hong Eun Woo", "22/12/2005"): {
         "ma": "EW05Q2",
         "loi_chuc": (
             " Hihihi, me cảm ơn vì lúc nào cũng nhiệt tình giúp me nha kkk,"
@@ -320,10 +245,7 @@ data_hoc_sinh = {
             " kkk"
         ),
     },
-    (
-        "Phạm Khánh Minh",
-        "02/10/2008",
-    ): {
+    ("Phạm Khánh Minh", "02/10/2008"): {
         "ma": "KM08Q2",
         "loi_chuc": (
             " Hihihihi, chúc Khánh Minh đỗ nv 1 nha, hình như là NEU nhỉii với"
@@ -334,7 +256,6 @@ data_hoc_sinh = {
     },
 }
 
-# Danh sách 5 lời chúc random dành riêng cho Hội đồng giám khảo / Thầy cô (tích hợp chuẩn CTM - HASS)
 danh_sach_loi_chuc_uic = [
     (
         "Hello! Wishing you a wonderful and relaxing day ahead. As a CTM"
@@ -378,76 +299,83 @@ ngay_sinh = st.text_input(
 )
 
 if "step" not in st.session_state:
-  st.session_state.step = 1
+    st.session_state.step = 1
 
 if st.button("click hear to find your own code"):
-  if ten:
-    st.session_state.ten_nguoi_gui = ten
-  else:
-    st.session_state.ten_nguoi_gui = "Người ẩn danh"
-
-  key = (ten.strip(), ngay_sinh.strip())
-
-  if key in data_hoc_sinh:
-    st.session_state.info = data_hoc_sinh[key]
-    st.success(
-        "Good news, your own message by my own heart is already=)))))"
-    )
-  else:
-    # Phân loại thông minh: Nếu năm sinh không phải 2008 -> Dành cho giám khảo/thầy cô
-    if "2008" not in ngay_sinh:
-      st.success(
-          f"Kính chào thầy/cô {ten}! Hệ thống đã chuẩn bị mã trải nghiệm riêng"
-          " cho Hội đồng."
-      )
-      st.session_state.info = {
-          "ma": "UICSPRING27",
-          "loi_chuc": random.choice(danh_sach_loi_chuc_uic),
-      }
+    if ten:
+        st.session_state.ten_nguoi_gui = ten
     else:
-      # Trường hợp bạn bè năm 2008 nhưng gõ sai/chưa khớp
-      st.warning("Please wait a second=)))...")
-      st.session_state.info = {
-          "ma": "0852DQ",
-          "loi_chuc": (
-              "Ae mình gặp được nhau là siêu có duyên đó, nhớ nha, chúc thi"
-              " đh tốt đạt nv 1 nhooo kkkk"
-          ),
-      }
+        st.session_state.ten_nguoi_gui = "Người ẩn danh"
 
-  st.session_state.step = 2
+    key = (ten.strip(), ngay_sinh.strip())
+
+    if key in data_hoc_sinh:
+        st.session_state.info = data_hoc_sinh[key]
+        st.success(
+            "Good news, your own message by my own heart is already=)))))"
+        )
+    else:
+        if "2008" not in ngay_sinh:
+            st.success(
+                f"Kính chào thầy/cô {ten}! Hệ thống đã chuẩn bị mã trải nghiệm riêng"
+                " cho Hội đồng."
+            )
+            st.session_state.info = {
+                "ma": "UICSPRING27",
+                "loi_chuc": random.choice(danh_sach_loi_chuc_uic),
+            }
+        else:
+            st.warning("Please wait a second=)))...")
+            st.session_state.info = {
+                "ma": "0852DQ",
+                "loi_chuc": (
+                    "Ae mình gặp được nhau là siêu có duyên đó, nhớ nha, chúc thi"
+                    " đh tốt đạt nv 1 nhooo kkkk"
+                ),
+            }
+
+    st.session_state.step = 2
 
 # --- HIỆN MÃ CODE ---
 if st.session_state.step >= 2:
-  st.write("Hmmmm ur code is.... ( copy the code to unlock plss :) )")
-  st.code(st.session_state.info["ma"])
+    st.write("Hmmmm ur code is.... ( copy the code to unlock plss :) )")
+    st.code(st.session_state.info["ma"])
 
 if st.session_state.step == 2:
-  ma_nhap = st.text_input("Hmmmm ur code  is....( copy the code to unlock plss=">)", type="password")
-  if st.button("Unlockkk..."):
-    if ma_nhap == st.session_state.info["ma"].strip():
-      st.balloons()
-      st.info(f"{st.session_state.info['loi_chuc']}")
-      st.session_state.step = 3
-      st.rerun()
-    else:
-      st.error("Incorrecttt")
+    ma_nhap = st.text_input(
+        "Hmmmm ur code is....( copy the code to unlock plss :) )",
+        type="password",
+    )
+    if st.button("Unlockkk..."):
+        if ma_nhap == st.session_state.info["ma"].strip():
+            st.balloons()
+            st.info(f"{st.session_state.info['loi_chuc']}")
+            st.session_state.step = 3
+            st.rerun()
+        else:
+            st.error("Incorrecttt")
 
 if st.session_state.step == 3:
-  if "info" in st.session_state:
-    st.info(f" {st.session_state.info.get('loi_chuc', 'Chúc bạn thành công!')}")
+    if "info" in st.session_state:
+        st.info(
+            f" {st.session_state.info.get('loi_chuc', 'Chúc bạn thành công!')}"
+        )
 
-  st.divider()
+    st.divider()
 
-  phan_hoi = st.text_area(
-      "You can write something or not—just don't write anything sappy🤧, okay? :)))"
-  )
-  if st.button("Drop Thủy a quick note😗=)))))"):
-    if phan_hoi:
-      ten_gui = st.session_state.get("ten_nguoi_gui", "Người lạ")
-      if gui_email(ten_gui, phan_hoi):
-        st.success("Sent successfully, tksss✌")
-      else:
-        st.error("error occurred while sending the email❌✍🏻")
-    else:
-      st.warning("You have to ✏️ something to send it, you can't send it if you leave it blank.")
+    phan_hoi = st.text_area(
+        "You can write something or not—just don't write anything"
+        " sappy🤧, okay? :)))"
+    )
+    if st.button("Drop Thủy a quick note😗=)))))"):
+        if phan_hoi:
+            ten_gui = st.session_state.get("ten_nguoi_gui", "Người lạ")
+            if gui_email(ten_gui, phan_hoi):
+                st.success("Sent successfully, tksss✌")
+            else:
+                st.error("error occurred while sending the email❌✍🏻")
+        else:
+            st.warning(
+                "You have to ✏️ something to send it, you can't send it if you"
+                " leave it blank."
+            )
