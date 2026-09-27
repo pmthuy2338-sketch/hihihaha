@@ -419,7 +419,7 @@ if st.button("click hear to find your own code"):
 
 # --- HIỆN MÃ CODE ---
 if st.session_state.step >= 2:
-  st.write("Hmmmm ur code  is....( copy the code to unlock plss=">):")
+  st.write("Hmmmm ur code is.... ( copy the code to unlock plss :) )")
   st.code(st.session_state.info["ma"])
 
 if st.session_state.step == 2:
