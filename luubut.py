@@ -295,7 +295,7 @@ danh_sach_loi_chuc_uic = [
     ),
 ]
 
-st.title("My digital guestbook")
+st.title("My digital yearbook")
 st.write("Please enter your full information.")
 
 ten = st.text_input("Full nameee pleaseee")
