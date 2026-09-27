@@ -254,6 +254,12 @@ data_hoc_sinh = {
             " qtqđ hahahah, chúc KMinh ước gì cũng đc hehe"
         ),
     },
+    ("Phan Minh Thủy", "23/03/2008"): {
+        "ma": "MT08Q2",
+        "loi_chuc": (
+            " HASS UIC YONSEI"
+        ),
+    },
 }
 
 danh_sach_loi_chuc_uic = [
@@ -345,17 +351,20 @@ if st.session_state.step == 2:
     ma_nhap = st.text_input(
         "Hmmmm ur code is....( copy the code to unlock plss :) )",
         type="password",
+        key="input_ma_nhap",
     )
+
     if st.button("Unlockkk..."):
         if ma_nhap == st.session_state.info["ma"].strip():
+            # Kích hoạt hiệu ứng bóng bay
             st.balloons()
-            st.info(f"{st.session_state.info['loi_chuc']}")
-            st.session_state.step = 3
-            st.rerun()
+            # Đánh dấu trạng thái đã mở khóa để hiển thị nội dung bên dưới ngay lập tức
+            st.session_state.da_mo_khoa = True
         else:
             st.error("Incorrecttt")
 
-if st.session_state.step == 3:
+# Hiển thị nội dung lời chúc và ô gửi email khi đã nhập đúng mã
+if st.session_state.get("da_mo_khoa", False):
     if "info" in st.session_state:
         st.info(
             f" {st.session_state.info.get('loi_chuc', 'Chúc bạn thành công!')}"
@@ -365,7 +374,8 @@ if st.session_state.step == 3:
 
     phan_hoi = st.text_area(
         "You can write something or not—just don't write anything"
-        " sappy🤧, okay? :)))"
+        " sappy🤧, okay? :)))",
+        key="txt_phan_hoi",
     )
     if st.button("Drop Thủy a quick note😗=)))))"):
         if phan_hoi:
