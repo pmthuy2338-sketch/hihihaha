@@ -146,7 +146,7 @@ data_hoc_sinh = {
         "ma": "TA08D5",
         "loi_chuc": (
             "Chúc Trâm Anh siêu cấp đáng iu trúng tuyển ngành mình muốn nè, thi"
-            " nhanh lên t với m còn đi ăn nữa=)))))))))))"
+            " nhanh lên chúng mình còn đi ăn nữa=)))))))))))"
         ),
     },
     ("Mai Thiên Bảo Anh", "18/02/2008"): {
@@ -180,13 +180,12 @@ data_hoc_sinh = {
     ("Trần Ngọc Phương Linh", "02/02/2008"): {
         "ma": "PL08Q2",
         "loi_chuc": (
-            "hihihihi, tớ muốn tớ với cậu chơi siêu siêu lâu, chả biết PLinh"
-            " định học ngành gì nhưng mà PLinh phải phải nhất định phải đỗ"
+            "hihihihi, tớ muốn chúng mình sẽ chơi với nhau thật lâu, PLinh nhất định phải đỗ HLU"
             " đók=))) xong rồi ae mình còn đi chơi nhiều nhiều nữa với chơi"
             " roblox=D"
         ),
     },
-    ("Đậu Ngọc Linh", "17/03/2008"): {"ma": "NL08D5", "loi_chuc": ""},
+    ("Đậu Ngọc Linh", "17/03/2008"): {"ma": "NL08D5", "loi_chuc": " chúc Linh đỗ được trường đại học mình mong muốn và luôn chơi với nhau nhe "},
     ("Nguyễn Trần Phương Anh", "21/11/2008"): {
         "ma": "PA08Q2",
         "loi_chuc": (
@@ -198,7 +197,7 @@ data_hoc_sinh = {
     ("Nguyễn Trúc An", "18/05/2008"): {
         "ma": "TA08Q2",
         "loi_chuc": (
-            "Siêu lâu rồi ko gặp An, mình cũng ít nch nữa, chúc An thi đỗ NEU"
+            "Siêu lâu rồi ko gặp An, mình cũng ít nói chuyện nữa, chúc An thi đỗ NEU"
             " nhasaaaa kkkkk"
         ),
     },
@@ -257,7 +256,7 @@ data_hoc_sinh = {
     ("Phan Minh Thủy", "23/03/2008"): {
         "ma": "MT08Q2",
         "loi_chuc": (
-            " HASS UIC YONSEI"
+            " I hope you get accepted into the HASS division at UIC Yonsei."
         ),
     },
 }
@@ -323,8 +322,7 @@ if st.button("click hear to find your own code"):
     else:
         if "2008" not in ngay_sinh:
             st.success(
-                f"Kính chào thầy/cô {ten}! Hệ thống đã chuẩn bị mã trải nghiệm riêng"
-                " cho Hội đồng."
+                f"Welcome {ten}! The system has prepared a dedicated experience code for UIC Yonsei."
             )
             st.session_state.info = {
                 "ma": "UICSPRING27",
